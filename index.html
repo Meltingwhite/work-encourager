@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>上班鼓励器</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="appbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15">
+            <path d="M12 2.6c3.55 4.3 5.85 7.2 5.85 10.2A5.85 5.85 0 1 1 6.15 12.8c0-3 2.3-5.9 5.85-10.2Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span>上班鼓励器</span>
+      </div>
+      <button class="gear" id="openSettings" type="button" aria-label="打开设置">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.1"/>
+          <path d="M19.3 13.1a7.5 7.5 0 0 0 0-2.2l1.8-1.3-1.9-3.3-2.1.9a7.7 7.7 0 0 0-1.9-1.1L14.8 4h-3.8l-.4 2.1a7.7 7.7 0 0 0-1.9 1.1l-2.1-.9-1.9 3.3 1.8 1.3a7.5 7.5 0 0 0 0 2.2l-1.8 1.3 1.9 3.3 2.1-.9a7.7 7.7 0 0 0 1.9 1.1l.4 2.1h3.8l.4-2.1a7.7 7.7 0 0 0 1.9-1.1l2.1.9 1.9-3.3-1.8-1.3Z"/>
+        </svg>
+        <span>设置</span>
+      </button>
+    </header>
+
+    <main class="content">
+      <p class="date" id="dateLine">--</p>
+
+      <section class="hero">
+        <div class="status-row">
+          <h1 class="status" id="status" data-state="working">上班中</h1>
+          <span class="pause-chip" id="pauseChip" hidden>计时已暂停</span>
+        </div>
+        <p class="countdown" id="countdown">距离下班还有 --</p>
+
+        <p class="eyebrow">今日已赚</p>
+        <p class="amount"><span class="currency">¥</span><span id="earned">0.0000</span></p>
+        <p class="rate" id="rateLine">当前赚钱速度 ¥0.0000 / 秒</p>
+        <p class="goal" id="goalLine">今天每一秒，都在为自己进账。</p>
+        <button class="primary" id="toggleTimer" type="button">关闭计时器</button>
+      </section>
+
+      <section class="progress-block">
+        <div class="progress-head">
+          <span>今日工时进度</span>
+          <strong id="progressPct">0.0%</strong>
+        </div>
+        <p class="worked" id="workedLine">已工作 0.00 / 0.00 小时</p>
+        <div class="track" role="progressbar" aria-label="今日工时进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span class="fill" id="progressFill"></span>
+        </div>
+      </section>
+
+      <section class="month-block">
+        <div class="month-head">
+          <span>本月累计</span>
+          <strong class="month-amount"><span class="currency-sm">¥</span><span id="monthEarned">0.0000</span></strong>
+        </div>
+        <p class="note">已过的日子按满勤补算。本月只计已赚，不含亏损。</p>
+      </section>
+
+      <footer class="foot">
+        <span>时薪 <b id="hourlyLine">¥0.00</b></span>
+        <span>今日满勤可得 <b id="dailyPayLine">¥0.00</b></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="overlay" id="settingsOverlay" hidden>
+    <form class="panel" id="settingsForm" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" autocomplete="off">
+      <div class="panel-head">
+        <h2 id="settingsTitle">设置</h2>
+        <button class="close" id="closeSettings" type="button" aria-label="关闭设置">×</button>
+      </div>
+
+      <div class="field-grid">
+        <label>上班时间<input type="time" id="start" required /></label>
+        <label>下班时间<input type="time" id="end" required /></label>
+        <label>午休开始<input type="time" id="lunchStart" /></label>
+        <label>午休结束<input type="time" id="lunchEnd" /></label>
+        <label>时薪（元）<input type="number" id="hourly" min="0" step="0.01" inputmode="decimal" required /></label>
+        <label>愿望物品<input type="text" id="itemName" maxlength="12" placeholder="一件T恤" /></label>
+        <label class="full">愿望价格（元）<input type="number" id="itemPrice" min="0" step="0.01" inputmode="decimal" /></label>
+      </div>
+
+      <div class="days">
+        <span class="days-label">工作日</span>
+        <div class="day-row" id="dayRow">
+          <button type="button" class="day" data-day="1" aria-pressed="false">一</button>
+          <button type="button" class="day" data-day="2" aria-pressed="false">二</button>
+          <button type="button" class="day" data-day="3" aria-pressed="false">三</button>
+          <button type="button" class="day" data-day="4" aria-pressed="false">四</button>
+          <button type="button" class="day" data-day="5" aria-pressed="false">五</button>
+          <button type="button" class="day" data-day="6" aria-pressed="false">六</button>
+          <button type="button" class="day" data-day="0" aria-pressed="false">日</button>
+        </div>
+      </div>
+
+      <p class="form-error" id="formError" hidden></p>
+      <p class="hint">午休留空表示不午休；设置会自动保存在本机。</p>
+
+      <div class="panel-actions">
+        <button type="button" class="ghost reset" id="resetSettings">恢复默认</button>
+        <span class="spacer"></span>
+        <button type="button" class="ghost" id="cancelSettings">取消</button>
+        <button type="submit" class="save">保存</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

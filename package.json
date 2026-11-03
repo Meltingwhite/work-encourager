@@ -1,0 +1,56 @@
+{
+  "name": "work-encourager",
+  "productName": "上班鼓励器",
+  "version": "1.0.0",
+  "description": "实时显示今日已赚工资、下班倒计时与工时进度的桌面小工具",
+  "author": "Work Encourager",
+  "license": "MIT",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.workencourager.app",
+    "productName": "上班鼓励器",
+    "artifactName": "WorkEncourager-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "index.html",
+      "styles.css",
+      "app.js",
+      "main.js",
+      "package.json",
+      "build/icon.png"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "上班鼓励器"
+    },
+    "mac": {
+      "icon": "build/icon.png",
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.productivity",
+      "identity": null
+    }
+  }
+}
