@@ -1,0 +1,21 @@
+page {
+  background: #f6f2e9;
+  color: #292520;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 28rpx;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  background: transparent;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+button::after {
+  border: none;
+}

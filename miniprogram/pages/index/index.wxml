@@ -1,0 +1,54 @@
+<view class="app">
+  <view class="toprow">
+    <text class="date">{{dateLine}}</text>
+    <view class="gear" bindtap="openSettings">设置</view>
+  </view>
+
+  <view class="status-row">
+    <text class="status status-{{state}}">{{statusText}}</text>
+    <text wx:if="{{paused}}" class="pause-chip">计时已暂停</text>
+  </view>
+
+  <view class="countdown">
+    <text>{{countdownPrefix}}</text>
+    <block wx:if="{{showCountdown}}">
+      <text class="cd-num">{{cdH}}</text><text>小时</text>
+      <text class="cd-num">{{cdM}}</text><text>分</text>
+      <text class="cd-num">{{cdS}}</text><text>秒</text>
+    </block>
+  </view>
+
+  <text class="eyebrow">今日已赚</text>
+  <view class="amount">
+    <text class="currency">¥</text>
+    <text class="amount-num">{{earned}}</text>
+  </view>
+  <text class="rate">{{rateLine}}</text>
+  <text class="goal">{{goalLine}}</text>
+
+  <button class="primary" bindtap="toggleTimer" disabled="{{!canToggle}}">{{toggleText}}</button>
+
+  <view class="block">
+    <view class="block-head">
+      <text>今日工时进度</text>
+      <text class="block-value">{{progressPct}}</text>
+    </view>
+    <view class="worked">已工作 <text class="strong">{{workedHours}}</text> / {{dailyHours}} 小时</view>
+    <view class="track">
+      <view class="fill" style="width: {{progressWidth}}%;"></view>
+    </view>
+  </view>
+
+  <view class="block">
+    <view class="block-head">
+      <text>本月累计</text>
+      <text class="month-amount">¥{{monthEarned}}</text>
+    </view>
+    <text class="note">已过的日子按满勤补算。本月只计已赚，不含亏损。</text>
+  </view>
+
+  <view class="foot">
+    <text>时薪 <text class="strong">{{hourlyLine}}</text></text>
+    <text>今日满勤可得 <text class="strong">{{dailyPayLine}}</text></text>
+  </view>
+</view>

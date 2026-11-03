@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f1ece1",
+    "navigationBarTitleText": "上班鼓励器",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f6f2e9",
+    "backgroundTextStyle": "dark"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,30 @@
+{
+  "description": "上班鼓励器微信小程序",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.32.3",
+  "appid": "touristappid",
+  "projectname": "work-encourager",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}
